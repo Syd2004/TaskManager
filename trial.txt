@@ -1,0 +1,226 @@
+<!-- Task 1: Overdue Task (High Alert) -->
+
+let dateToday = Date.now()
+let projectDate = new Date(task.dueDate)
+const difference = (dateToday - projectDate) / (1000 * 60 * 60 * 24)
+let status
+if (dateToday == projectDate) {
+  status = "today"
+} else if (difference < 0) {
+  status = "waiting"
+} else if (difference > 0) {
+  status = "overdue"
+}
+
+<div class="task-item status-${status}">
+    <div class="task-checkbox-wrap">
+        <input type="checkbox" id="task-1" title="Mark complete">
+    </div>
+    <div class="task-details">
+        <div class="task-title-row">
+            <span class="task-title">${task.title}</span>
+            <span class="badge-tag badge-${task.priority}">${task.priority}</span>
+            <span class="badge-tag badge-${task.category}">${task.category}</span>
+        </div>
+        <p class="task-desc">${task.description}</p>
+        <div class="task-meta-row">
+            <span class="meta-due overdue">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                Overdue: Sep 5 (2 days ago)
+            </span>
+            <span>&bull;</span>
+            <span> Assigned to: Boris</span>
+        </div>
+    </div>
+    <div class="task-actions">
+        <button class="btn-icon" title="Edit task">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        </button>
+        <button class="btn-icon" title="Delete task">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+        </button>
+    </div>
+</div>
+
+Hardcoded task list items
+<div class="task-list">
+
+                        <!-- Task 1: Overdue Task (High Alert) -->
+                        <div class="task-item status-overdue">
+                            <div class="task-checkbox-wrap">
+                                <input type="checkbox" id="task-1" title="Mark complete">
+                            </div>
+                            <div class="task-details">
+                                <div class="task-title-row">
+                                    <span class="task-title">Submit Q3 Project Proposal Draft to Manager</span>
+                                    <span class="badge-tag badge-urgent">Urgent</span>
+                                    <span class="badge-tag badge-category">Project</span>
+                                </div>
+                                <p class="task-desc">Include architecture diagrams, milestone timelines, and resource estimates for team review.</p>
+                                <div class="task-meta-row">
+                                    <span class="meta-due overdue">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                        Overdue: Sep 5 (2 days ago)
+                                    </span>
+                                    <span>&bull;</span>
+                                    <span> Assigned to: Boris</span>
+                                </div>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn-icon" title="Edit task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                </button>
+                                <button class="btn-icon" title="Delete task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Task 2: Overdue Follow-up (Boris Sticky Note Replacement) -->
+                        <div class="task-item status-overdue">
+                            <div class="task-checkbox-wrap">
+                                <input type="checkbox" id="task-2" title="Mark complete">
+                            </div>
+                            <div class="task-details">
+                                <div class="task-title-row">
+                                    <span class="task-title">Follow up with Sarah regarding API staging credentials</span>
+                                    <span class="badge-tag badge-high">High Priority</span>
+                                    <span class="badge-tag badge-followup">Follow-up</span>
+                                </div>
+                                <p class="task-desc">Need the OAuth client credentials to test authentication endpoints in local environment.</p>
+                                <div class="task-meta-row">
+                                    <span class="meta-due overdue">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                        Overdue: Sep 6 (1 day ago)
+                                    </span>
+                                    <span>&bull;</span>
+                                    <span> Waiting on: Sarah (DevOps)</span>
+                                </div>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn-icon" title="Edit task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                </button>
+                                <button class="btn-icon" title="Delete task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Task 3: Due Today (Learning Goal) -->
+                        <div class="task-item status-today">
+                            <div class="task-checkbox-wrap">
+                                <input type="checkbox" id="task-3" title="Mark complete">
+                            </div>
+                            <div class="task-details">
+                                <div class="task-title-row">
+                                    <span class="task-title">Complete Docker & Kubernetes Onboarding Module 2</span>
+                                    <span class="badge-tag badge-high">High</span>
+                                    <span class="badge-tag badge-learning">Learning</span>
+                                </div>
+                                <p class="task-desc">Watch module videos on container orchestration and finish lab assignment #3.</p>
+                                <div class="task-meta-row">
+                                    <span class="meta-due due-today">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        Due Today &bull; 4:00 PM
+                                    </span>
+                                    <span>&bull;</span>
+                                    <span> Graduate Training Milestone</span>
+                                </div>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn-icon" title="Edit task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                </button>
+                                <button class="btn-icon" title="Delete task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Task 4: Due Today (Work/Code Review) -->
+                        <div class="task-item status-today">
+                            <div class="task-checkbox-wrap">
+                                <input type="checkbox" id="task-4" title="Mark complete">
+                            </div>
+                            <div class="task-details">
+                                <div class="task-title-row">
+                                    <span class="task-title">Review Pull Request #42 for Payment Gateway</span>
+                                    <span class="badge-tag badge-medium">Medium</span>
+                                    <span class="badge-tag badge-category">Work</span>
+                                </div>
+                                <p class="task-desc">Verify error boundary handlers and webhook signature validation in backend handler.</p>
+                                <div class="task-meta-row">
+                                    <span class="meta-due due-today">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        Due Today &bull; 6:00 PM
+                                    </span>
+                                    <span>&bull;</span>
+                                    <span> Codebase: API Service</span>
+                                </div>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn-icon" title="Edit task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                </button>
+                                <button class="btn-icon" title="Delete task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Task 5: Waiting For / Delegated -->
+                        <div class="task-item status-waiting">
+                            <div class="task-checkbox-wrap">
+                                <input type="checkbox" id="task-5" title="Mark complete">
+                            </div>
+                            <div class="task-details">
+                                <div class="task-title-row">
+                                    <span class="task-title">Database Schema Approval from Tech Lead</span>
+                                    <span class="badge-tag badge-low">Low</span>
+                                    <span class="badge-tag badge-followup">Waiting For</span>
+                                </div>
+                                <p class="task-desc">Proposed indexes for user audit logs submitted for Marcus's review.</p>
+                                <div class="task-meta-row">
+                                    <span> Waiting on: Marcus (Tech Lead)</span>
+                                    <span>&bull;</span>
+                                    <span>Sent: Sep 4</span>
+                                </div>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn-icon" title="Edit task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                </button>
+                                <button class="btn-icon" title="Delete task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Task 6: Completed Task -->
+                        <div class="task-item status-completed">
+                            <div class="task-checkbox-wrap">
+                                <input type="checkbox" id="task-6" checked title="Completed">
+                            </div>
+                            <div class="task-details">
+                                <div class="task-title-row">
+                                    <span class="task-title">Set up local dev environment & SSH keys</span>
+                                    <span class="badge-tag badge-category">Work</span>
+                                    <span class="badge-tag" style="background: var(--success-bg); color: var(--success);">Done</span>
+                                </div>
+                                <p class="task-desc">Configured Git credentials, node 20, and PostgreSQL test database containers.</p>
+                                <div class="task-meta-row">
+                                    <span style="color: var(--success);">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        Completed yesterday
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn-icon" title="Delete task">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
