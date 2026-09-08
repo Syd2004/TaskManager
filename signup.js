@@ -2,6 +2,7 @@ const passwordInput = document.getElementById('Password');
 const confirmInput = document.getElementById('PasswordConfirm');
 const strengthBar = document.getElementById('strength-bar');
 const form = document.getElementById('signup-form');
+const username = document.getElementById('Username')
 
 
 // Password strength checker
@@ -51,10 +52,8 @@ form.addEventListener('submit', function(e) {
         return;
     }
 
-    // Form is valid - proceed with submission
     console.log('Form submitted successfully!');
-    window.location.href = "dashboard.html";
-    // Add your form submission logic here
+    signup(username.value, passwordInput.value)
 });
 
 function signup(username, password) {
@@ -66,8 +65,11 @@ function signup(username, password) {
     users.push({
         id:crypto.randomUUID(),
         username: username,
-        password: password
+        password: password,
+        tasks: []
     })
 
-    localStorage.setItem(JSON.stringify(users))
+    localStorage.setItem("users", JSON.stringify(users))
+    alert("User created successfully")
+    window.location.href = "/login.html"
 }

@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Boris Task Manager</title>
-    <!-- Google Fonts matching login/signup -->
+    <title>Dashboard | Task Manager</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
@@ -31,7 +30,7 @@
 
         <!-- Navigation Actions -->
         <div class="nav-actions">
-            <a href="#new-task-modal" class="btn btn-primary btn-sm">
+            <a href="#new-task-modal" class="btn btn-primary btn-sm" onclick="resetTaskForm(); ">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -78,12 +77,11 @@
 
             <!-- User Profile & Logout -->
             <div class="user-profile">
-                <div class="avatar">B</div>
+                <div class="avatar" id="user-avatar"></div>
                 <div class="user-info">
-                    <span class="user-name">Boris</span>
-                    <span class="user-role">Graduate Associate</span>
+                    <span class="user-name" id="profile-username"></span>
                 </div>
-                <a href="login.html" class="btn-logout" title="Log Out">
+                <a href="/login.html" onclick="logout()" class="btn-logout" title="Log Out">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                         <polyline points="16 17 21 12 16 7"></polyline>
@@ -100,70 +98,35 @@
         <!-- HERO / DAILY BRIEFING BANNER -->
         <section class="hero-banner">
             <div class="hero-content">
-                <h2>Welcome back, <span>Boris</span>!</h2>
+                <h2>Welcome back, <span id="username-display"></span>!</h2>
                 <p>Here is your productivity overview for today. Clear out overdue items and focus on high-impact learning.</p>
                 <div class="hero-tags">
-                    <span class="hero-tag danger">
+                    <span class="hero-tag danger" id="total-overdue">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                        2 Overdue Items
+                        
                     </span>
-                    <span class="hero-tag warning">
+                    <span class="hero-tag warning" id="total-due-today">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        3 Due Today
+                        
                     </span>
-                    <span class="hero-tag success">
+                    <span class="hero-tag success" id="total-completed">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        9 Tasks Completed This Week
+                        
                     </span>
                 </div>
             </div>
             <div class="hero-actions">
-                <a href="#new-task-modal" class="btn btn-primary">
+                <a href="#new-task-modal" class="btn btn-primary" onclick="resetTaskForm()">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     Add New Task
                 </a>
             </div>
         </section>
 
-        <!-- KPI / PRODUCTIVITY METRIC CARDS (Answering: What progress have I made?) -->
-        <section class="stats-grid">
-            <!-- Total Tasks -->
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-title">Total Tasks</span>
-                    <div class="stat-icon icon-cyan">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    </div>
-                </div>
-                <div class="stat-body">
-                    <span class="stat-number">14</span>
-                    <span class="stat-change positive">+3 this week</span>
-                </div>
-                <div class="stat-progress-bar">
-                    <div class="stat-progress-fill fill-cyan" style="width: 100%;"></div>
-                </div>
-                <span class="stat-footer">Active in workspace</span>
-            </div>
-
-            <!-- Completed Tasks -->
-            <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-title">Completed Tasks</span>
-                    <div class="stat-icon icon-green">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                </div>
-                <div class="stat-body">
-                    <span class="stat-number">9</span>
-                    <span class="stat-change positive">64% rate</span>
-                </div>
-                <div class="stat-progress-bar">
-                    <div class="stat-progress-fill fill-green" style="width: 64%;"></div>
-                </div>
-                <span class="stat-footer">9 of 14 tasks finished</span>
-            </div>
-
-            <!-- Pending / In Progress -->
+        <!-- PRODUCTIVITY METRIC CARDS  -->
+        <section class="stats-grid" id="stats-grid">
+            
+            <!-- Pending / In Progress --
             <div class="stat-card">
                 <div class="stat-header">
                     <span class="stat-title">In Progress</span>
@@ -181,7 +144,7 @@
                 <span class="stat-footer">Currently active</span>
             </div>
 
-            <!-- Overdue (Immediate Action Required) -->
+            <!-- Overdue (Immediate Action Required) --
             <div class="stat-card alert-card">
                 <div class="stat-header">
                     <span class="stat-title" style="color: #F87171;">Overdue</span>
@@ -199,7 +162,7 @@
                 <span class="stat-footer">Falling behind schedule</span>
             </div>
 
-            <!-- Waiting For / Follow-ups -->
+            <!-- Waiting For / Follow-ups --
             <div class="stat-card">
                 <div class="stat-header">
                     <span class="stat-title">Waiting For</span>
@@ -215,7 +178,7 @@
                     <div class="stat-progress-fill fill-purple" style="width: 50%;"></div>
                 </div>
                 <span class="stat-footer">Awaiting responses</span>
-            </div>
+            </div>-->
         </section>
 
         <!-- MAIN TWO-COLUMN DASHBOARD GRID -->
@@ -224,33 +187,33 @@
             <!-- LEFT COLUMN: TASK VIEWS & SPOTLIGHT -->
             <div class="tasks-column">
 
-                <!-- "WHAT SHOULD I DO RIGHT NOW?" SPOTLIGHT (Key Boris Requirement) -->
+                <!-- RECOMMENDED TASK -->
                 <section class="spotlight-card">
                     <div class="spotlight-header">
                         <div class="spotlight-pill">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                             Recommended Next Focus
                         </div>
-                        <span class="badge-tag badge-urgent">High Priority &bull; Overdue</span>
+                        <span class="badge-tag badge-urgent" id="recommended-badge"></span>
                     </div>
                     <div class="spotlight-item">
                         <div class="spotlight-info">
-                            <h3>Submit Q3 Project Proposal Draft to Manager</h3>
-                            <p>Finalize the scope document and architecture diagrams for the client project. Manager requested this by end of week.</p>
+                            <h3 id="recommended-title"></h3>
+                            <p id="recommended-description"></p>
                             <div class="spotlight-meta">
-                                <span>
+                                <span id="recommended-due">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                    Overdue by 2 days
+                                    
                                 </span>
-                                <span>&bull;</span>
-                                <span>
+                                <!--span>&bull;</span>
+                                <span id="recommended-category">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                                    Project &bull; Core Work
-                                </span>
+                                    
+                                </span-->
                             </div>
                         </div>
                         <div class="hero-actions">
-                            <button class="btn btn-primary btn-sm">
+                            <button class="btn btn-primary btn-sm" id="recommended-complete">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                 Mark Complete
                             </button>
@@ -258,7 +221,7 @@
                     </div>
                 </section>
 
-                <!-- TASK MANAGEMENT CENTER (Organization, Filters, Status, Overdue) -->
+                <!-- TASK MANAGEMENT CENTER -->
                 <section class="task-manager-card">
                     <div class="task-manager-header">
                         <h3>
@@ -268,35 +231,32 @@
 
                         <!-- Filter Tabs -->
                         <div class="filter-tabs">
-                            <button class="filter-tab active">
-                                All Tasks <span class="badge">14</span>
+                            <button class="filter-tab active" onclick="filterTasks('all', this)">
+                                All Tasks <span class="badge" id="total-tasks"></span>
                             </button>
-                            <button class="filter-tab">
-                                Today's Focus <span class="badge">3</span>
+                            <button class="filter-tab" onclick="filterTasks('today', this)">
+                                Today's Focus <span class="badge" id="tasks-due-today"></span>
                             </button>
-                            <button class="filter-tab tab-danger">
-                                Overdue <span class="badge">2</span>
+                            <button class="filter-tab tab-danger" onclick="filterTasks('overdue', this)">
+                                Overdue <span class="badge" id="tasks-overdue"></span>
                             </button>
-                            <button class="filter-tab">
-                                Waiting For <span class="badge">3</span>
-                            </button>
-                            <button class="filter-tab">
-                                Completed <span class="badge">9</span>
+                            <button class="filter-tab" onclick="filterTasks('completed', this)">
+                                Completed <span class="badge" id="tasks-completed"></span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Task Organization Controls (Filter, Sort, Search) -->
+                    <!-- Task Organization Controls -->
                     <div class="task-controls-bar">
                         <div class="controls-left">
-                            <select class="custom-select" title="Filter by Category">
+                            <select class="custom-select" id="category-filter" title="Filter by Category">
                                 <option value="all">All Categories</option>
-                                <option value="work">💼 Work / Projects</option>
-                                <option value="learning">🎓 Learning & Onboarding</option>
-                                <option value="followup">💬 Follow-ups / Waiting</option>
+                                <option value="work"> Work</option>
+                                <option value="learning"> Learning & Onboarding</option>
+                                <option value="project">Project</option>
                             </select>
 
-                            <select class="custom-select" title="Filter by Priority">
+                            <select class="custom-select" id="priority-filter" title="Filter by Priority">
                                 <option value="all">All Priorities</option>
                                 <option value="urgent"> Urgent</option>
                                 <option value="high"> High</option>
@@ -307,8 +267,8 @@
 
                         <div class="controls-right">
                             <label style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 0;">Sort by:</label>
-                            <select class="custom-select" title="Sort Tasks">
-                                <option value="due-date"> Due Date (Urgent first)</option>
+                            <select class="custom-select" id="sort-tasks" title="Sort Tasks">
+                                <option value="due-date"> Due Date</option>
                                 <option value="priority"> Priority (Highest first)</option>
                                 <option value="created"> Recently Added</option>
                                 <option value="title"> Alphabetical</option>
@@ -317,194 +277,14 @@
                     </div>
 
                     <!-- TASK LIST ITEMS -->
-                    <div class="task-list">
-
-                        <!-- Task 1: Overdue Task (High Alert) -->
-                        <div class="task-item status-overdue">
-                            <div class="task-checkbox-wrap">
-                                <input type="checkbox" id="task-1" title="Mark complete">
-                            </div>
-                            <div class="task-details">
-                                <div class="task-title-row">
-                                    <span class="task-title">Submit Q3 Project Proposal Draft to Manager</span>
-                                    <span class="badge-tag badge-urgent">Urgent</span>
-                                    <span class="badge-tag badge-category">Project</span>
-                                </div>
-                                <p class="task-desc">Include architecture diagrams, milestone timelines, and resource estimates for team review.</p>
-                                <div class="task-meta-row">
-                                    <span class="meta-due overdue">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                                        Overdue: Sep 5 (2 days ago)
-                                    </span>
-                                    <span>&bull;</span>
-                                    <span> Assigned to: Boris</span>
-                                </div>
-                            </div>
-                            <div class="task-actions">
-                                <button class="btn-icon" title="Edit task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                </button>
-                                <button class="btn-icon" title="Delete task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Task 2: Overdue Follow-up (Boris Sticky Note Replacement) -->
-                        <div class="task-item status-overdue">
-                            <div class="task-checkbox-wrap">
-                                <input type="checkbox" id="task-2" title="Mark complete">
-                            </div>
-                            <div class="task-details">
-                                <div class="task-title-row">
-                                    <span class="task-title">Follow up with Sarah regarding API staging credentials</span>
-                                    <span class="badge-tag badge-high">High Priority</span>
-                                    <span class="badge-tag badge-followup">Follow-up</span>
-                                </div>
-                                <p class="task-desc">Need the OAuth client credentials to test authentication endpoints in local environment.</p>
-                                <div class="task-meta-row">
-                                    <span class="meta-due overdue">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                                        Overdue: Sep 6 (1 day ago)
-                                    </span>
-                                    <span>&bull;</span>
-                                    <span> Waiting on: Sarah (DevOps)</span>
-                                </div>
-                            </div>
-                            <div class="task-actions">
-                                <button class="btn-icon" title="Edit task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                </button>
-                                <button class="btn-icon" title="Delete task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Task 3: Due Today (Learning Goal) -->
-                        <div class="task-item status-today">
-                            <div class="task-checkbox-wrap">
-                                <input type="checkbox" id="task-3" title="Mark complete">
-                            </div>
-                            <div class="task-details">
-                                <div class="task-title-row">
-                                    <span class="task-title">Complete Docker & Kubernetes Onboarding Module 2</span>
-                                    <span class="badge-tag badge-high">High</span>
-                                    <span class="badge-tag badge-learning">Learning</span>
-                                </div>
-                                <p class="task-desc">Watch module videos on container orchestration and finish lab assignment #3.</p>
-                                <div class="task-meta-row">
-                                    <span class="meta-due due-today">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                        Due Today &bull; 4:00 PM
-                                    </span>
-                                    <span>&bull;</span>
-                                    <span> Graduate Training Milestone</span>
-                                </div>
-                            </div>
-                            <div class="task-actions">
-                                <button class="btn-icon" title="Edit task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                </button>
-                                <button class="btn-icon" title="Delete task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Task 4: Due Today (Work/Code Review) -->
-                        <div class="task-item status-today">
-                            <div class="task-checkbox-wrap">
-                                <input type="checkbox" id="task-4" title="Mark complete">
-                            </div>
-                            <div class="task-details">
-                                <div class="task-title-row">
-                                    <span class="task-title">Review Pull Request #42 for Payment Gateway</span>
-                                    <span class="badge-tag badge-medium">Medium</span>
-                                    <span class="badge-tag badge-category">Work</span>
-                                </div>
-                                <p class="task-desc">Verify error boundary handlers and webhook signature validation in backend handler.</p>
-                                <div class="task-meta-row">
-                                    <span class="meta-due due-today">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                        Due Today &bull; 6:00 PM
-                                    </span>
-                                    <span>&bull;</span>
-                                    <span> Codebase: API Service</span>
-                                </div>
-                            </div>
-                            <div class="task-actions">
-                                <button class="btn-icon" title="Edit task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                </button>
-                                <button class="btn-icon" title="Delete task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Task 5: Waiting For / Delegated -->
-                        <div class="task-item status-waiting">
-                            <div class="task-checkbox-wrap">
-                                <input type="checkbox" id="task-5" title="Mark complete">
-                            </div>
-                            <div class="task-details">
-                                <div class="task-title-row">
-                                    <span class="task-title">Database Schema Approval from Tech Lead</span>
-                                    <span class="badge-tag badge-low">Low</span>
-                                    <span class="badge-tag badge-followup">Waiting For</span>
-                                </div>
-                                <p class="task-desc">Proposed indexes for user audit logs submitted for Marcus's review.</p>
-                                <div class="task-meta-row">
-                                    <span> Waiting on: Marcus (Tech Lead)</span>
-                                    <span>&bull;</span>
-                                    <span>Sent: Sep 4</span>
-                                </div>
-                            </div>
-                            <div class="task-actions">
-                                <button class="btn-icon" title="Edit task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                </button>
-                                <button class="btn-icon" title="Delete task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Task 6: Completed Task -->
-                        <div class="task-item status-completed">
-                            <div class="task-checkbox-wrap">
-                                <input type="checkbox" id="task-6" checked title="Completed">
-                            </div>
-                            <div class="task-details">
-                                <div class="task-title-row">
-                                    <span class="task-title">Set up local dev environment & SSH keys</span>
-                                    <span class="badge-tag badge-category">Work</span>
-                                    <span class="badge-tag" style="background: var(--success-bg); color: var(--success);">Done</span>
-                                </div>
-                                <p class="task-desc">Configured Git credentials, node 20, and PostgreSQL test database containers.</p>
-                                <div class="task-meta-row">
-                                    <span style="color: var(--success);">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                        Completed yesterday
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="task-actions">
-                                <button class="btn-icon" title="Delete task">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
+                    <div class="task-list" id="task-list"></div>
                 </section>
             </div>
 
             <!-- RIGHT COLUMN: SIDEBAR WIDGETS -->
             <aside class="sidebar-column">
 
-                <!-- QUICK ADD TASK (Simple, Fast Entry) -->
+                <!-- QUICK ADD TASK -->
                 <div class="sidebar-widget">
                     <div class="widget-header">
                         <h4>
@@ -512,69 +292,30 @@
                             Quick Add Task
                         </h4>
                     </div>
-                    <form class="quick-add-form" onsubmit="event.preventDefault(); alert('Task added!');">
-                        <input type="text" placeholder="What do you need to get done?" required>
-                        <textarea placeholder="Add notes, context, or checklist..."></textarea>
+                    <form class="quick-add-form" onsubmit="event.preventDefault(); addTask();">
+                        <input type="text" id="quick-task-title" placeholder="What do you need to get done?" required>
+                        <textarea id="quick-task-desc" placeholder="Add notes, context, or checklist..."></textarea>
                         <div class="form-row-2">
-                            <select title="Priority">
+                            <select title="Priority" id="quick-task-priority">
                                 <option value="urgent"> Urgent</option>
                                 <option value="high"> High</option>
                                 <option value="medium" selected> Medium</option>
                                 <option value="low"> Low</option>
                             </select>
-                            <select title="Category">
+                            <select title="Category" id="quick-task-category">
                                 <option value="work"> Work</option>
                                 <option value="learning"> Learning</option>
                                 <option value="project"> Project</option>
                                 <option value="followup"> Follow-up</option>
                             </select>
                         </div>
-                        <input type="date" title="Due Date" value="2026-09-07">
+                        <input id="quick-task-date" type="date" title="Due Date" value="2026-09-07">
                         <button type="submit" class="btn btn-primary" style="width: 100%;">+ Add to Task List</button>
                     </form>
                 </div>
 
-                <!-- WAITING FOR & FOLLOW-UPS TRACKER (Solves Boris forgetting pending things) -->
-                <div class="sidebar-widget">
-                    <div class="widget-header">
-                        <h4>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                            Waiting For Follow-Ups
-                        </h4>
-                        <span class="badge-tag badge-followup">3 Active</span>
-                    </div>
-                    <div class="waiting-list">
-                        <div class="waiting-item">
-                            <div class="waiting-title">API Staging Key & OAuth Tokens</div>
-                            <div class="waiting-person"> Sarah (DevOps Lead)</div>
-                            <div class="waiting-footer">
-                                <span style="color: #F87171;">Waiting 3 days</span>
-                                <button class="btn btn-secondary btn-sm" style="height: 24px; padding: 0 8px; font-size: 0.85em;">Ping Sarah</button>
-                            </div>
-                        </div>
-
-                        <div class="waiting-item">
-                            <div class="waiting-title">DB Schema Migration Review</div>
-                            <div class="waiting-person"> Marcus (Tech Lead)</div>
-                            <div class="waiting-footer">
-                                <span>Waiting 2 days</span>
-                                <button class="btn btn-secondary btn-sm" style="height: 24px; padding: 0 8px; font-size: 0.85em;">Ping Marcus</button>
-                            </div>
-                        </div>
-
-                        <div class="waiting-item">
-                            <div class="waiting-title">Hardware Security Key Request</div>
-                            <div class="waiting-person"> IT Support Desk</div>
-                            <div class="waiting-footer">
-                                <span>Waiting 4 days</span>
-                                <button class="btn btn-secondary btn-sm" style="height: 24px; padding: 0 8px; font-size: 0.85em;">Check Ticket</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- WEEKLY MOMENTUM & LEARNING PROGRESS (Answering: What progress have I made?) -->
-                <div class="sidebar-widget">
+                <!-- WEEKLY MOMENTUM & LEARNING PROGRESS -->
+                <!--div class="sidebar-widget">
                     <div class="widget-header">
                         <h4>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
@@ -613,21 +354,21 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div-->
 
             </aside>
         </div>
 
     </main>
 
-    <!-- PURE HTML/CSS CREATE TASK MODAL (Accessible via href="#new-task-modal") -->
+    <!-- PURE HTML/CSS CREATE TASK MODAL -->
     <div id="new-task-modal" class="modal-backdrop">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Create New Task</h3>
+                <h3 id="modal-title">Create New Task</h3>
                 <a href="#" class="modal-close" title="Close modal">&times;</a>
             </div>
-            <form class="modal-form" onsubmit="event.preventDefault(); alert('Task created!'); window.location.href='#';">
+            <form class="modal-form" onsubmit="event.preventDefault(); saveTask()">
                 <div class="form-group">
                     <label for="task-title-input">Task Title *</label>
                     <input type="text" id="task-title-input" placeholder="e.g., Finish Kubernetes Lab 3" required>
@@ -672,14 +413,9 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="task-waiting">Waiting on someone? (Optional)</label>
-                    <input type="text" id="task-waiting" placeholder="e.g. Sarah for API key">
-                </div>
-
                 <div class="modal-footer">
                     <a href="#" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="btn btn-primary" onclick="createNewTask()">Create Task</button>
+                    <button type="submit" class="btn btn-primary">Save Task</button>
                 </div>
             </form>
         </div>
@@ -687,4 +423,5 @@
 
 </body>
 <script src="/dashboard.js"></script>
+<script src="/auth.js"></script>
 </html>

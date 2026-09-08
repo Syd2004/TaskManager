@@ -1,5 +1,5 @@
 **Business Case:**
-Mr Boris is a recent graduate who just started working. He has a lot of things he needs to learn and projects he needs to finish, but he often feels paralysed. He writes tasks on sticky notes, but they get lost. He isn't sure what he should be working on *right now*, and he often forgets to follow up on things he was waiting for. He needs a simple, visual tool that not only lists his tasks but helps him understand his progress and reminds him of what is falling behind.
+Mr Boris is a recent graduate who just started working. He has a lot of things he needs to learn and projects he needs to finish, but he often feels paralysed. He writes tasks on sticky notes, but they get lost. He isn't sure what he should be working onï¿½*right now*, and he often forgets to follow up on things he was waiting for. He needs a simple, visual tool that not only lists his tasks but helps him understand his progress and reminds him of what is falling behind.
 
 **Your Objective:**
 Build a web application, a productivity tool designed to help users like Mr Boris move from confusion to action. The app should allow a user to manage their tasks, but the main goal is to provide a "dashboard" view that gives them immediate insight into their workload and what needs attention next.
